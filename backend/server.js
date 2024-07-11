@@ -1,12 +1,15 @@
 const express = require('express')
-const dbConnect = require('./backend/config/dbConnect.js')
+const dbConnect = require('./config/dbConnect.js')
+const dotenv=require('dotenv')
 const app = express()
 app.use(express.json())
 const path = require('path')
-const userRoute = require('./backend/routes/userRoutes.js')
-const transactionsRoute = require('./backend/routes/transactionRoutes.js')
+const userRoute = require('./routes/userRoutes.js')
+const transactionsRoute = require('./routes/transactionRoutes.js')
 app.use('/api/users/' , userRoute)
 app.use('/api/transactions/' , transactionsRoute)
+
+dotenv.config({path:'backend/config/config.env'});
 
 const port =process.env.PORT || 5000
 
