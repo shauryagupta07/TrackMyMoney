@@ -12,6 +12,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
+import Analytics from "../components/Analytics";
 const { RangePicker } = DatePicker;
 function Home() {
   const [showAddEditTransactionModal, setShowAddEditTransactionModal] =
@@ -147,7 +148,13 @@ function Home() {
                 onClick={() => setViewType("table")}
                 size={30}
               />
-             
+              <AreaChartOutlined
+                className={`${
+                  viewType === "analytics" ? "active-icon" : "inactive-icon"
+                } `}
+                onClick={() => setViewType("analytics")}
+                size={30}
+              />
             </div>
           </div>
           <button
@@ -165,7 +172,7 @@ function Home() {
             <Table columns={columns} dataSource={transactionsData} />
           </div>
         ) : (
-          ""
+          <Analytics transactions={transactionsData} />
         )}
       </div>
 
